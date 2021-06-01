@@ -6,12 +6,9 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import androidx.lifecycle.Observer
-import com.example.arista.data.model.LoginUser
 import com.example.arista.data.model.SignUpUser
 import com.example.arista.ui.main.viewmodel.MainViewModel
 import com.example.arista.utils.Status
-import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_login.btnLogin
 import kotlinx.android.synthetic.main.activity_signup.*
 
 class SignupActivity : AppCompatActivity() {
@@ -25,7 +22,7 @@ class SignupActivity : AppCompatActivity() {
 
         val token = getSharedPreferences("User", Context.MODE_PRIVATE)
 
-        btnLogin.setOnClickListener() {
+        btnSignUp.setOnClickListener() {
             viewModel = MainViewModel()
 
             var signupUser = SignUpUser()
@@ -33,7 +30,7 @@ class SignupActivity : AppCompatActivity() {
             signupUser.mname = editTextSignupMName.text.toString().trim()
             signupUser.lname = editTextSignupLName.text.toString().trim()
             signupUser.email = editTextSignupEmail.text.toString().trim()
-            signupUser.phone = editTextSignupMobile.text.toString().trim()
+            signupUser.mobile = editTextSignupMobile.text.toString().trim()
             signupUser.password = editTextSignupPassword.text.toString().trim()
             val cPassword = editTextSignupCPassword.text.toString().trim()
 
@@ -43,15 +40,16 @@ class SignupActivity : AppCompatActivity() {
                     .observe(this, Observer { networkResource ->
                         when (networkResource.status) {
                             Status.LOADING -> {
-                                Toast.makeText(this, "Signing in", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(this, "Signing up", Toast.LENGTH_SHORT).show()
                             }
                             Status.SUCCESS -> {
                                 val map = networkResource.data
                                 map?.let {
-                                    Toast.makeText(this, map.get("status").toString(), Toast.LENGTH_SHORT).show()
+                                    //Toast.makeText(this, map["status"].toString(), Toast.LENGTH_SHORT).show()
                                     val intent = Intent(this, HomeActivity::class.java)
 
                                     val editor = token.edit()
+                                    editor.putString("user_id", map["user_id"].toString())
                                     editor.putString("isLoggedIn", signupUser.email)
                                     editor.commit()
 

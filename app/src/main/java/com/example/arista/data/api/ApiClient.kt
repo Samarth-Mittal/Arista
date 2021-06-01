@@ -1,7 +1,8 @@
 package com.example.arista.data.api
 
 import android.util.Log
-import com.example.arista.utils.Constants.Companion.baseUrl
+import com.example.arista.utils.Constants.Companion.herokuBaseUrl
+import com.example.arista.utils.Constants.Companion.localhostBaseUrl
 import com.google.gson.GsonBuilder
 import okhttp3.Dispatcher
 import okhttp3.OkHttpClient
@@ -17,7 +18,7 @@ object ApiClient {
     private val retrofit: Retrofit by lazy {
         Log.e("AppClient", "Creating Retrofit Client")
         val builder = Retrofit.Builder()
-            .baseUrl(baseUrl)
+            .baseUrl(herokuBaseUrl)
             .addConverterFactory(GsonConverterFactory.create(GsonBuilder().create()))
         val dispatcher = Dispatcher()
         dispatcher.maxRequests = 1

@@ -7,18 +7,18 @@ import retrofit2.http.*
 
 interface  UserApi {
 
-    @POST(" /login")
+    @POST("/login")
     suspend fun doLogin(@Body loginUser: LoginUser): Response<HashMap<String, Any>>
 
-    @POST("/registration")
+    @POST("/signup")
     suspend fun doRegister(@Body signUpUser: SignUpUser): Response<HashMap<String, Any>>
 
     @POST("/add")
-    suspend fun addContact(@Body id: Int, name: String, number: String): Response<HashMap<String, Any>>
+    suspend fun addContact(@Body addContact: AddContact): Response<HashMap<String, Any>>
 
     @POST("/help")
-    suspend fun sendHelp(@Body id: Long, location: String): Response<HashMap<String, Any>>
+    suspend fun sendHelp(@Body sendHelp: SendHelp): Response<HashMap<String, Any>>
 
-    @GET("/qwerty")
-    suspend fun func(): Response<String>
+    @GET("/contacts")
+    suspend fun getContacts(@Body userID: UserID): Response<HashMap<String, Any>>
 }

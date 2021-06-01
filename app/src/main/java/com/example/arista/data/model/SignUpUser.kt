@@ -5,6 +5,6 @@ class SignUpUser {
     lateinit var mname: String
     lateinit var lname: String
     lateinit var email: String
-    lateinit var phone: String
+    lateinit var mobile: String
     lateinit var password: String
 }

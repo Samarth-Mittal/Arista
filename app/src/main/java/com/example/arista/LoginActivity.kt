@@ -29,7 +29,8 @@ class  LoginActivity : AppCompatActivity() {
             loginUser.email = editTextLoginName.text.toString().trim()
             loginUser.password = editTextLoginPassword.text.toString().trim()
 
-            viewModel.dofunc().observe(this, Observer { networkResource ->
+            //startActivity(Intent(this, HomeActivity::class.java))
+            viewModel.doLogin(loginUser, token).observe(this, Observer { networkResource ->
                 when (networkResource.status) {
                     Status.LOADING -> {
                         Toast.makeText(this, "Signing in", Toast.LENGTH_SHORT).show()
@@ -37,10 +38,11 @@ class  LoginActivity : AppCompatActivity() {
                     Status.SUCCESS -> {
                         val map = networkResource.data
                         map?.let {
-                            Toast.makeText(this, map, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this, map["status"].toString(), Toast.LENGTH_SHORT).show()
                             val intent = Intent(this, HomeActivity::class.java)
 
                             val editor = token.edit()
+                            editor.putString("user_id", map["user_id"].toString())
                             editor.putString("isLoggedIn", loginUser.email)
                             editor.commit()
 

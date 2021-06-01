@@ -36,9 +36,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="15dp"
+            android:gravity="center"
             android:text="Login"
             android:textColor="@color/white"
-            android:textSize="45sp" />
+            android:textSize="35sp" />
 
         <TextView
             android:id="@+id/btnSignup_Logout"
@@ -47,7 +48,7 @@
             android:padding="15dp"
             android:text="Signup"
             android:textColor="@color/white"
-            android:textSize="45dp" />
+            android:textSize="35dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

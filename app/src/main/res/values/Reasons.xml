@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="Reasons">
+        <item>I don\'t feel safe</item>
+        <item>Someone\'s following me</item>
+        <item>Being mugged</item>
+        <item>Being harassed</item>
+    </string-array>
+</resources>
